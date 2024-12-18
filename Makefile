@@ -1,30 +1,44 @@
-CFLAGS  = -Wall -Wextra -Werror
+CC = gcc
 
-LIBFT = libft/libft.a
+CFLAGS  := -g -Wall -Wextra -Werror	-Wunreachable-code
 
-INC = -I libft/includes
+MLX_DIR = ./MLX42
+MLX := $(MLX_DIR)/libmlx42.a
 
-all: $(CLIENT) $(SERVER)
+LIBFT := libft/libft.a
 
-$(CLIENT): $(LIBFT) client.c
-	@gcc $(CFLAGS) $(INC) -o $(CLIENT) client.c $(LIBFT)
+INC := -I libft/includes
 
-$(SERVER): $(LIBFT) server.c
-	@gcc $(CFLAGS) $(INC) -o $(SERVER) server.c $(LIBFT)
+HEADERS := -I$(MLX)
+SRCS := so_long 
+
+OBJS := ${SRCS:.c=.o}
+
+NAME := so_long
+
+all: $(NAME)
+
+libmlx:
+	@make -C $(MLX_DIR)
+	@echo 🔥 🔥 Making MLX ✅ ✅
 
 $(LIBFT):
 	@make -C libft
 	@echo 🔥 🔥 Making Executables ✅ ✅
 
+%.o: %.c
+	@$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS) && printf "Compiling: $(notdir $<)"
+$(NAME): $(OBJS)
+	@$(CC) $(OBJS) $(MLX) $(HEADERS) -lglfw -L /Users/$(USER)/.brew/opt/glfw/lib/ -o $(NAME)
+
 clean:
-	@make -C libft clean
+	@rm -fr $(OBJS)
 	@echo 🔥 🔥 Deleting all .o Files 🗑️ 🗑️
 
 fclean: clean
-	@make -C libft fclean
-	@rm -rf $(CLIENT) $(SERVER)
+	@rm -rf $(NAME)
 	@echo  🔥 🔥 Deleting executables files 🗑️ 🗑️
 
-re: fclean all
+re: clean all
 
-.PHONY: all clean fclean re
+.PHONY: all, clean, fclean, re, libmlx
