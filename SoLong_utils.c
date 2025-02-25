@@ -6,11 +6,13 @@
 /*   By: mmembril <mmembril@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 12:13:48 by mmembril          #+#    #+#             */
-/*   Updated: 2024/12/26 12:16:59 by mmembril         ###   ########.fr       */
+/*   Updated: 2024/12/30 19:15:07 by mmembril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	check_name(char *name)
+#include "SoLong.h"
+
+int	check_name(char *name)
 {
 	int i;
 

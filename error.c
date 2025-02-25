@@ -6,12 +6,14 @@
 /*   By: mmembril <mmembril@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 11:57:32 by mmembril          #+#    #+#             */
-/*   Updated: 2024/12/26 13:50:34 by mmembril         ###   ########.fr       */
+/*   Updated: 2024/12/30 19:17:20 by mmembril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "SoLong.h"
 
 void error (char *str)
 {
     ft_printf("\nError%s\n", str);
-    exit();
+    exit(1);
 }

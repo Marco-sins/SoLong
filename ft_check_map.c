@@ -6,9 +6,11 @@
 /*   By: mmembril <mmembril@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 13:37:08 by mmembril          #+#    #+#             */
-/*   Updated: 2024/12/26 13:51:18 by mmembril         ###   ########.fr       */
+/*   Updated: 2024/12/30 19:15:42 by mmembril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "SoLong.h"
 
 int ft_count_exit(char **map)
 {

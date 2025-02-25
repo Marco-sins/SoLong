@@ -6,7 +6,7 @@
 /*   By: mmembril <mmembril@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 18:00:00 by mmembril          #+#    #+#             */
-/*   Updated: 2024/12/26 13:25:42 by mmembril         ###   ########.fr       */
+/*   Updated: 2024/12/30 19:11:33 by mmembril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,16 @@ typedef struct s_map
     mlx_t   *mlx;    
 }   t_map;
 
-
+int ft_count_exit(char **map);
+int ft_count_player(char **map);
+int ft_count_coin(char **map);
+int check_map(char **map);
+int ft_walls_map(char **map, int rows, int columns);
+int	check_name(char *name);
+void error (char *str);
+char **ft_map(char *name_file, t_map *maps);
+char **ft_mount_map(char *name_file, int rows);
+int ft_check_column(char *name_file, int cant_rows);
+int ft_count_rows(char *name_file);
 
 #endif

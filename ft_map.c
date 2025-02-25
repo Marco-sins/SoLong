@@ -6,7 +6,7 @@
 /*   By: mmembril <mmembril@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 12:27:38 by mmembril          #+#    #+#             */
-/*   Updated: 2024/12/26 13:50:28 by mmembril         ###   ########.fr       */
+/*   Updated: 2024/12/30 19:12:53 by mmembril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int ft_count_rows(char *name_file)
     }
     free (line);
     close (fd);
+    if (i < 3)
+        error (" en el tamaño del mapa");
     return (i);
 }
 
@@ -48,6 +50,9 @@ int ft_check_column(char *name_file, int cant_rows)
         error (" al abrir el archivo");
     line = get_next_line(fd);
     i = ft_strlen(line);
+    if (i < 3)
+        error (" en el tamaño del mapa");
+    cant_rows--;
     while (cant_rows > 0)
     {
         aux = line;
@@ -89,4 +94,8 @@ char **ft_map(char *name_file, t_map *maps)
     maps->row = ft_count_rows(name_file);
     maps->column = ft_check_column(name_file, maps->row);
     map = ft_mount_map(name_file, maps->row);
+    if (ft_count_coin(map) || ft_count_exit(map) || ft_count_player(map) || check_map(map) || ft_wall_map(map))
+    {
+        
+    }
 }

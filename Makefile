@@ -1,6 +1,6 @@
 CC = gcc
 
-CFLAGS  := -g -Wall -Wextra -Werror	-Wunreachable-code
+CFLAGS  := -g -Wall -Wextra -Werror
 
 MLX_DIR = ./MLX42
 MLX := $(MLX_DIR)/libmlx42.a
@@ -10,7 +10,7 @@ LIBFT := libft/libft.a
 INC := -I libft/includes
 
 HEADERS := -I$(MLX)
-SRCS := so_long 
+SRCS := SoLong.c SoLong_utils.c ft_check_map.c ft_check_map_2.c error.c
 
 OBJS := ${SRCS:.c=.o}
 
