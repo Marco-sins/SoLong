@@ -6,7 +6,7 @@
 /*   By: mmembril <mmembril@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 12:13:48 by mmembril          #+#    #+#             */
-/*   Updated: 2024/12/30 19:15:07 by mmembril         ###   ########.fr       */
+/*   Updated: 2025/06/01 20:27:03 by mmembril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,9 @@ int	check_name(char *name)
 	int i;
 
 	i = ft_strlen(name);
-	if (name[i - 1] != 'r' || name[i - 2] != 'e' || name[i - 3] != 'b' || name[i
-		- 4] != '.')
-		return (0);
-	return (1);
+	i -= 1;
+	if (name[i] != 'r' || name[i - 1] != 'e' || name[i - 2] != 'b' || name[i
+		- 3] != '.')
+		return (FALSE);
+	return (TRUE);
 }
