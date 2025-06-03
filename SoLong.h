@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   SoLong.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmembril <mmembril@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: marco <marco@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 18:00:00 by mmembril          #+#    #+#             */
-/*   Updated: 2025/06/01 20:13:31 by mmembril         ###   ########.fr       */
+/*   Updated: 2025/06/03 19:04:59 by marco            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SOLONG_H
 # define SOLONG_H
 
-# include "MLX42/include/MLX42/MLX42.h"
+# include "minilibx-linux/mlx.h"
 # include "libft/includes/libft.h"
 # include "gnl/get_next_line.h"
 # include <unistd.h>
@@ -56,7 +56,7 @@ typedef struct s_image
 typedef struct s_game
 {
     t_map   map;
-    mlx_t   mlx;
+    void    *mlx;
 }   t_game;
 
 

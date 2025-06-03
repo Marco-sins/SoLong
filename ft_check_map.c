@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmembril <mmembril@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: marco <marco@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 13:37:08 by mmembril          #+#    #+#             */
-/*   Updated: 2025/06/01 20:30:21 by mmembril         ###   ########.fr       */
+/*   Updated: 2025/06/03 19:40:42 by marco            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "SoLong.h"
 
-int ft_count_exit(char **map)
+int ft_count_exit(t_game *game)
 {
     int i;
     int j;
@@ -20,23 +20,27 @@ int ft_count_exit(char **map)
 
     i = 0;
     exit = 0;
-    while (map[i])
+    while (game->map.str_map[i])
     {
         j = 0;
-        while (map[i][j])
+        while (game->map.str_map[i][j])
         {
-            if (map[i][j] == 'E')
+            if (game->map.str_map[i][j] == 'E')
+            {
                 exit++;
+                game->map.exit_column = j;
+                game->map.exit_row = i;
+            }
             j++;
         }
         i++;
     }
     if (exit != 1)
-        error ("Exit");
+        return (FALSE);
     return (TRUE);
 }
 
-int ft_count_player(char **map)
+int ft_count_player(t_game *game)
 {
     int i;
     int j;
@@ -44,23 +48,27 @@ int ft_count_player(char **map)
 
     i = 0;
     player = 0;
-    while (map[i])
+    while (game->map.str_map[i])
     {
         j = 0;
-        while (map[i][j])
+        while (game->map.str_map[i][j])
         {
-            if (map[i][j] == 'P')
+            if (game->map.str_map[i][j] == 'P')
+            {
                 player++;
+                game->map.player.x = j;
+                game->map.player.y = i;
+            }
             j++;
         }
         i++;
     }
     if (player != 1)
-        error ("Player");
+        return (FALSE);
     return (TRUE);
 }
 
-int ft_count_coin(char **map)
+int ft_count_coin(t_game *game)
 {
     int i;
     int j;
@@ -68,23 +76,24 @@ int ft_count_coin(char **map)
 
     i = 0;
     coin = 0;
-    while (map[i])
+    while (game->map.str_map[i])
     {
         j = 0;
-        while (map[i][j])
+        while (game->map.str_map[i][j])
         {
-            if (map[i][j] == 'C')
+            if (game->map.str_map[i][j] == 'C')
                 coin++;
             j++;
         }
         i++;
     }
     if (coin < 1)
-        error ("Coin");
+        return (FALSE);
+    game->map.coin = coin;
     return (TRUE);
 }
 
-int check_map(char **map)
+int check_characters(char **map)
 {
     int i;
     int j;
@@ -96,7 +105,7 @@ int check_map(char **map)
         while (map[i][j])
         {
             if (map[i][j] != 'C' || map[i][j] != 'E' || map[i][j] != '1' || map[i][j] != '0' || map[i][j] != 'P')
-                error("Invalid character");
+                return (FALSE);
             j++;
         }
         i++;
@@ -104,3 +113,12 @@ int check_map(char **map)
     return (TRUE);
 }
 
+int check_map(t_game *game)
+{
+    if (!check_characters(game->map.str_map) || ft_count_coin(game) || 
+        !ft_count_player(game) || !ft_count_exit(game))
+        return (FALSE);
+    if (!is_valid_map(game->map.str_map, game->map.row))
+        return (FALSE);
+    return (TRUE);
+}
