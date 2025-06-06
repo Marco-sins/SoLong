@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   SoLong.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marco <marco@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mmembril <mmembril@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 18:00:00 by mmembril          #+#    #+#             */
-/*   Updated: 2025/06/03 19:04:59 by marco            ###   ########.fr       */
+/*   Updated: 2025/06/06 19:56:49 by mmembril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SOLONG_H
 # define SOLONG_H
 
-# include "minilibx-linux/mlx.h"
+# include "MLX42/include/MLX42/MLX42.h"
 # include "libft/includes/libft.h"
 # include "gnl/get_next_line.h"
 # include <unistd.h>
@@ -21,8 +21,6 @@
 
 # define TRUE   1
 # define FALSE  0
-# define EXIT_SUCCESS 0
-# define EXIT_FAILURE 1
 # define IMG_WIDTH      64
 # define IMG_HEIGHT     64
 
@@ -35,29 +33,33 @@ typedef struct s_map
     int     exit_row;
     int     exit_column;
     int     mov;
-    t_player    player;  
+    int     x_player;
+    int     y_player;
+    t_image *image;
 }   t_map;
-
-typedef struct s_player
-{
-    int x;
-    int y;
-}   t_player;
 
 typedef struct s_image
 {
-    void    *coin;
-    void    *exit;
-    void    *floor;
-    void    *player;
-    void    *wall;
+    mlx_image_t    *coin;
+    mlx_image_t    *exit;
+    mlx_image_t    *floor;
+    mlx_image_t    *player;
+    mlx_image_t    *wall;
 }   t_image;
 
 typedef struct s_game
 {
-    t_map   map;
+    t_map   *map;
     void    *mlx;
 }   t_game;
 
+t_game  *init_game();
+int	check_name(char *name);
+void    load_images(t_game *game);
+void    set_map_images(t_game *game);
+void    ft_map(char *name_file, t_game *game);
+char **ft_mount_map(char *name_file, int rows);
+int ft_check_column(char **map, int cant_rows);
+int ft_count_rows(char **map);
 
 #endif
