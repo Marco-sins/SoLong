@@ -24,6 +24,20 @@
 # define IMG_WIDTH      64
 # define IMG_HEIGHT     64
 
+typedef struct s_image
+{
+    mlx_image_t    *i_coin;
+    mlx_texture_t   *t_coin;
+    mlx_image_t    *i_exit;
+    mlx_texture_t   *t_exit;
+    mlx_image_t    *i_floor;
+    mlx_texture_t   *t_floor;
+    mlx_image_t    *i_player;
+    mlx_texture_t   *t_player;
+    mlx_image_t    *i_wall;
+    mlx_texture_t   *t_wall;    
+}   t_image;
+
 typedef struct s_map
 {
     char    **str_map;
@@ -37,15 +51,6 @@ typedef struct s_map
     int     y_player;
     t_image *image;
 }   t_map;
-
-typedef struct s_image
-{
-    mlx_image_t    *coin;
-    mlx_image_t    *exit;
-    mlx_image_t    *floor;
-    mlx_image_t    *player;
-    mlx_image_t    *wall;
-}   t_image;
 
 typedef struct s_game
 {
