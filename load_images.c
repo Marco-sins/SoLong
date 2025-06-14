@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_images.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmembril <mmembril@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: marco <marco@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 19:34:42 by mmembril          #+#    #+#             */
-/*   Updated: 2025/06/06 19:53:47 by mmembril         ###   ########.fr       */
+/*   Updated: 2025/06/14 11:19:40 by marco            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,15 @@ void    set_map_images(t_game *game)
         while (game->map->str_map[y][x])
         {
             if (game->map->str_map[y][x] == '1')
-                mlx_image_to_window(game->mlx, game->map->image->wall, x, y);
+                mlx_image_to_window(game->mlx, game->map->image->i_wall, x, y);
             else if (game->map->str_map[y][x] == '0')
-                mlx_image_to_window(game->mlx, game->map->image->floor, x, y);
+                mlx_image_to_window(game->mlx, game->map->image->i_floor, x, y);
             else if (game->map->str_map[y][x] == 'P')
-                mlx_image_to_window(game->mlx, game->map->image->player, x, y);
+                mlx_image_to_window(game->mlx, game->map->image->i_player, x, y);
             else if (game->map->str_map[y][x] == 'C')
-                mlx_image_to_window(game->mlx, game->map->image->coin, x, y);
+                mlx_image_to_window(game->mlx, game->map->image->i_coin, x, y);
             else if (game->map->str_map[y][x] == 'E')
-                mlx_image_to_window(game->mlx, game->map->image->exit, x, y);
+                mlx_image_to_window(game->mlx, game->map->image->i_exit, x, y);
             x++;
         }
         y++;
@@ -49,7 +49,7 @@ void    clear_texture(t_image *image)
     mlx_delete_texture(image->t_wall);
 }
 
-void    load_images(t_game *game)
+int load_images(t_game *game)
 {
     t_image *image;
 
@@ -60,7 +60,7 @@ void    load_images(t_game *game)
     image->t_player = mlx_load_png("source/player.png");
     image->t_wall = mlx_load_png("source/wall.png");
     if (!image->t_coin || !image->t_coin || !image->t_floor || !image->t_player || !image->t_wall)
-        error("Can't procesed the images", game);
+        return (1);
     image->i_coin = mlx_texture_to_image(game->mlx, image->t_coin);
     image->i_exit = mlx_texture_to_image(game->mlx, image->t_exit);
     image->i_floor = mlx_texture_to_image(game->mlx, image->t_floor);
@@ -68,5 +68,5 @@ void    load_images(t_game *game)
     image->i_wall = mlx_texture_to_image(game->mlx, image->t_wall);
     clear_texture(image);
     if (!image->i_coin || !image->i_exit || !image->i_floor || !image->i_player || !image->i_wall)
-        error("Can't procesed the images", game);
+        return (1);
 }

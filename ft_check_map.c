@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmembril <mmembril@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: marco <marco@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 13:37:08 by mmembril          #+#    #+#             */
-/*   Updated: 2025/06/06 19:28:30 by mmembril         ###   ########.fr       */
+/*   Updated: 2025/06/14 11:15:27 by marco            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ int ft_count_player(t_game *game)
             if (game->map->str_map[i][j] == 'P')
             {
                 player++;
-                game->map->player->x = j;
-                game->map->player->y = i;
+                game->map->x_player = j;
+                game->map->y_player = i;
             }
             j++;
         }

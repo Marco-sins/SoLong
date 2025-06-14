@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   SoLong.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmembril <mmembril@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: marco <marco@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 18:00:00 by mmembril          #+#    #+#             */
-/*   Updated: 2025/06/06 19:56:49 by mmembril         ###   ########.fr       */
+/*   Updated: 2025/06/14 11:16:49 by marco            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,6 @@ typedef struct s_game
     void    *mlx;
 }   t_game;
 
-t_game  *init_game();
-int	check_name(char *name);
-void    load_images(t_game *game);
-void    set_map_images(t_game *game);
-void    ft_map(char *name_file, t_game *game);
-char **ft_mount_map(char *name_file, int rows);
-int ft_check_column(char **map, int cant_rows);
-int ft_count_rows(char **map);
+
 
 #endif

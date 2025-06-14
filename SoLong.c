@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   SoLong.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmembril <mmembril@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: marco <marco@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 11:48:54 by mmembril          #+#    #+#             */
-/*   Updated: 2025/06/06 19:53:56 by mmembril         ###   ########.fr       */
+/*   Updated: 2025/06/14 11:27:18 by marco            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,16 @@ int main(int ac, char **av)
     t_game *game;
 
     if (ac != 2)
-        error("Arguments");
+        return (error("Arguments"));
     else if (!check_name(av[1]))
-        error("Invalid map name");
+        return (error("Invalid map name"));
     game = init_game();
-    ft_map(av[1], game);
-    game->mlx = mlx_init(game->map->column, game->map->row, "SoLong", FALSE);
-
+    if (ft_map(av[1], game))
+        return (1);
+    game->mlx = mlx_init(64 * game->map->column, 64 * game->map->row, "SoLong", FALSE);
+    if (!game->mlx)
+        return (free_map(game), 1);
+    if (load_img(game))
+        return (free_map(game), 1);
+    //mlx_key_hook(game->mlx, )
 }

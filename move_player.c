@@ -1,33 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   move_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marco <marco@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/26 11:57:32 by mmembril          #+#    #+#             */
-/*   Updated: 2025/06/14 11:12:58 by marco            ###   ########.fr       */
+/*   Created: 2025/06/14 11:27:40 by marco             #+#    #+#             */
+/*   Updated: 2025/06/14 11:30:27 by marco            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "SoLong.h"
 
-int error(const char *str, t_game *game)
+void    move_player(mlx_key_data_t keydata, t_game *game)
 {
-    ft_printf("Error: %s\n", str);
-    ft_free(game);
-    return (1);
-}
-
-void    ft_free(t_game *game)
-{
-    int i;
-    
-    i = 0;
-    while (game->map->str_map[i])
-    {
-        free(game->map->str_map[i]);
-        i++;
-    }
-    free(game->map->str_map);
+    if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
+        mlx_close_window(game->mlx);
+    if (keydata.key == MLX_KEY_UP && keydata.action == MLX_PRESS)
 }

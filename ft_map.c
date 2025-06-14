@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_map.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmembril <mmembril@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: marco <marco@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 12:27:38 by mmembril          #+#    #+#             */
-/*   Updated: 2025/06/06 19:28:50 by mmembril         ###   ########.fr       */
+/*   Updated: 2025/06/14 11:14:55 by marco            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,11 @@ char **ft_mount_map(char *name_file, int rows)
     return (map);
 }
 
-void    ft_map(char *name_file, t_game *game)
+int ft_map(char *name_file, t_game *game)
 {
     game->map->str_map = ft_mount_map(name_file, game->map->row);
     game->map->row = ft_count_rows(game->map->str_map);
     game->map->column = ft_check_column(game->map->str_map, game->map->row);
     if (!check_map(game))
-        error("Invalid map");
+        return (error("Invalid map"));
 }
