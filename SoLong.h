@@ -6,7 +6,7 @@
 /*   By: marco <marco@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 18:00:00 by mmembril          #+#    #+#             */
-/*   Updated: 2025/06/14 11:16:49 by marco            ###   ########.fr       */
+/*   Updated: 2025/06/26 11:08:05 by marco            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,18 @@ typedef struct s_map
 typedef struct s_game
 {
     t_map   *map;
+    int moves;
     void    *mlx;
 }   t_game;
 
-
+int error(const char *str, t_game *game);
+void    move_player(mlx_key_data_t keydata, void *param);
+int ft_map(char *name_file, t_game *game);
+int check_map(t_game *game);
+int is_valid_map(char **map, int rows);
+int	check_name(char *name);
+int load_images(t_game *game);
+void    ft_free(t_game *game);
+int set_map_images(t_game *game);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmembril <mmembril@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: marco <marco@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/06 21:25:38 by marco             #+#    #+#             */
-/*   Updated: 2024/12/26 12:05:25 by mmembril         ###   ########.fr       */
+/*   Updated: 2025/06/26 11:11:54 by marco            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*ft_strjoin_gnl(char *s1, char const *s2)
 	int		i;
 	int		j;
 
-	s3 = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
+	s3 = malloc((ft_strlen_gnl(s1) + ft_strlen_gnl(s2) + 1) * sizeof(char));
 	i = 0;
 	j = 0;
 	if (!s3)
@@ -74,7 +74,7 @@ void	*ft_calloc_gnl(size_t nmeb, size_t size)
 	ptr = malloc(nmeb * size);
 	if (!ptr)
 		return (NULL);
-	ft_bzero(ptr, nmeb * size);
+	ft_bzero_gnl(ptr, nmeb * size);
 	return (ptr);
 }
 

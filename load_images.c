@@ -6,13 +6,13 @@
 /*   By: marco <marco@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 19:34:42 by mmembril          #+#    #+#             */
-/*   Updated: 2025/06/14 11:19:40 by marco            ###   ########.fr       */
+/*   Updated: 2025/06/26 11:07:59 by marco            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "SoLong.h"
 
-void    set_map_images(t_game *game)
+int set_map_images(t_game *game)
 {
     int x;
     int y;
@@ -38,9 +38,10 @@ void    set_map_images(t_game *game)
         }
         y++;
     }
+    return (0);
 }
 
-void    clear_texture(t_image *image)
+static void    clear_texture(t_image *image)
 {
     mlx_delete_texture(image->t_coin);
     mlx_delete_texture(image->t_exit);
@@ -69,4 +70,5 @@ int load_images(t_game *game)
     clear_texture(image);
     if (!image->i_coin || !image->i_exit || !image->i_floor || !image->i_player || !image->i_wall)
         return (1);
+    return (0);
 }

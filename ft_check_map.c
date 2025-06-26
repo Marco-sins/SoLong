@@ -6,13 +6,13 @@
 /*   By: marco <marco@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 13:37:08 by mmembril          #+#    #+#             */
-/*   Updated: 2025/06/14 11:15:27 by marco            ###   ########.fr       */
+/*   Updated: 2025/06/26 10:20:30 by marco            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "SoLong.h"
 
-int ft_count_exit(t_game *game)
+static int ft_count_exit(t_game *game)
 {
     int i;
     int j;
@@ -40,7 +40,7 @@ int ft_count_exit(t_game *game)
     return (TRUE);
 }
 
-int ft_count_player(t_game *game)
+static int ft_count_player(t_game *game)
 {
     int i;
     int j;
@@ -68,7 +68,7 @@ int ft_count_player(t_game *game)
     return (TRUE);
 }
 
-int ft_count_coin(t_game *game)
+static int ft_count_coin(t_game *game)
 {
     int i;
     int j;
@@ -93,7 +93,7 @@ int ft_count_coin(t_game *game)
     return (TRUE);
 }
 
-int check_characters(char **map)
+static int check_characters(char **map)
 {
     int i;
     int j;
