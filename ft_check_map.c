@@ -6,7 +6,7 @@
 /*   By: marco <marco@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 13:37:08 by mmembril          #+#    #+#             */
-/*   Updated: 2025/06/26 10:20:30 by marco            ###   ########.fr       */
+/*   Updated: 2025/06/29 13:16:37 by marco            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ static int ft_count_exit(t_game *game)
 
     i = 0;
     exit = 0;
-    while (game->map->str_map[i])
+    while (game->map->str_map[i] != NULL)
     {
         j = 0;
-        while (game->map->str_map[i][j])
+        while (game->map->str_map[i][j] != '\0')
         {
             if (game->map->str_map[i][j] == 'E')
             {
@@ -48,10 +48,10 @@ static int ft_count_player(t_game *game)
 
     i = 0;
     player = 0;
-    while (game->map->str_map[i])
+    while (game->map->str_map[i] != NULL)
     {
         j = 0;
-        while (game->map->str_map[i][j])
+        while (game->map->str_map[i][j] != '\0')
         {
             if (game->map->str_map[i][j] == 'P')
             {
@@ -76,10 +76,10 @@ static int ft_count_coin(t_game *game)
 
     i = 0;
     coin = 0;
-    while (game->map->str_map[i])
+    while (game->map->str_map[i] != NULL)
     {
         j = 0;
-        while (game->map->str_map[i][j])
+        while (game->map->str_map[i][j] != '\0')
         {
             if (game->map->str_map[i][j] == 'C')
                 coin++;
@@ -99,12 +99,12 @@ static int check_characters(char **map)
     int j;
 
     i = 0;
-    while (map[i])
+    while (map[i] != NULL)
     {
         j = 0;
-        while (map[i][j])
+        while (map[i][j] != '\0')
         {
-            if (map[i][j] != 'C' || map[i][j] != 'E' || map[i][j] != '1' || map[i][j] != '0' || map[i][j] != 'P')
+            if (map[i][j] != 'C' && map[i][j] != 'E' && map[i][j] != '1' && map[i][j] != '0' && map[i][j] != 'P' && map[i][j] != '\0')
                 return (FALSE);
             j++;
         }
@@ -115,7 +115,7 @@ static int check_characters(char **map)
 
 int check_map(t_game *game)
 {
-    if (!check_characters(game->map->str_map) || ft_count_coin(game) || 
+    if (!check_characters(game->map->str_map) || !ft_count_coin(game) || 
         !ft_count_player(game) || !ft_count_exit(game))
         return (FALSE);
     if (!is_valid_map(game->map->str_map, game->map->row))

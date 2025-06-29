@@ -6,7 +6,7 @@
 /*   By: marco <marco@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 13:51:49 by mmembril          #+#    #+#             */
-/*   Updated: 2025/06/26 10:29:22 by marco            ###   ########.fr       */
+/*   Updated: 2025/06/29 13:08:28 by marco            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,23 +41,52 @@ static char    **copy_map(char **map, int rows)
     return (map_copy);
 }
 
-int is_valid_map(char **map, int rows)
+static void get_pos_player(char **map, int *y, int *x)
 {
     int i;
     int j;
 
     i = 0;
-    flood_fill(copy_map(map, rows), 0, 0);
-    while (map[i] != NULL)
+    while (map[i])
     {
         j = 0;
-        while (map[i][j] != '\0')
+        while (map[i][j])
         {
-            if (map[i][j] != '1' && map[i][j] != 'F')
+            if (map[i][j] == 'P')
+            {
+                *y = i;
+                *x = j;
+                return ;
+            }
+            j++;
+        }
+        i++;
+    }
+}
+
+int is_valid_map(char **map, int rows)
+{
+    int i;
+    int j;
+    int x;
+    int y;
+    char    **cpy_map;
+
+    i = 0;
+    cpy_map = copy_map(map, rows);
+    get_pos_player(cpy_map, &y, &x);
+    flood_fill(cpy_map, y, x);
+    while (cpy_map[i] != NULL)
+    {
+        j = 0;
+        while (cpy_map[i][j] != '\0')
+        {
+            if (cpy_map[i][j] != '1' && cpy_map[i][j] != 'F' && cpy_map[i][j] != '0')
                 return (FALSE);
             j++;       
         }
         i++;
     }
+    ft_free_map(cpy_map);
     return (TRUE);
 }

@@ -6,7 +6,7 @@
 /*   By: marco <marco@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 11:48:54 by mmembril          #+#    #+#             */
-/*   Updated: 2025/06/26 11:08:17 by marco            ###   ########.fr       */
+/*   Updated: 2025/06/29 14:09:42 by marco            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,16 +44,16 @@ int main(int ac, char **av)
     t_game *game;
 
     if (ac != 2)
-        return (ft_printf("ERROR\n"), 1);
+        return (1);
     else if (!check_name(av[1]))
-        return (ft_printf("ERROR\n"), 1);
+        return (1);
     game = init_game();
     if (ft_map(av[1], game))
         return (1);
     game->mlx = mlx_init(64 * game->map->column, 64 * game->map->row, "SoLong", FALSE);
     if (!game->mlx)
         return (ft_free(game), 1);
-    if (load_images(game) && set_map_images(game))
+    if (load_images(game) || set_map_images(game))
         return (ft_free(game), 1);
     mlx_key_hook(game->mlx, &move_player, game);
     mlx_loop(game->mlx);

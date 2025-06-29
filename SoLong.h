@@ -6,7 +6,7 @@
 /*   By: marco <marco@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 18:00:00 by mmembril          #+#    #+#             */
-/*   Updated: 2025/06/26 11:08:05 by marco            ###   ########.fr       */
+/*   Updated: 2025/06/29 13:39:01 by marco            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "MLX42/include/MLX42/MLX42.h"
 # include "libft/includes/libft.h"
-# include "gnl/get_next_line.h"
+# include "libft/includes/get_next_line.h"
 # include <unistd.h>
 # include <stdio.h>
 
@@ -68,5 +68,7 @@ int	check_name(char *name);
 int load_images(t_game *game);
 void    ft_free(t_game *game);
 int set_map_images(t_game *game);
+void    ft_free_map(char **str);
+void    clear_img(t_game *game);
 
 #endif

@@ -7,8 +7,6 @@ MLX := $(MLX_DIR)/build/libmlx42.a
 
 LIBFT := libft/libft.a
 
-GNL_DIR := ./gnl
-
 INC := -I libft/includes
 
 HEADERS := -I$(MLX)
@@ -20,10 +18,9 @@ SRCS := 	error.c \
 			move_player.c \
 			SoLong_utils.c \
 			SoLong.c \
-			$(GNL_DIR)/get_next_line.c \
-			$(GNL_DIR)/get_next_line_utils.c
 
-OBJS := ${SRCS:.c=.o}
+OBJDIR			= objs
+OBJS			= $(SRCS:%.c=$(OBJDIR)/%.o)
 
 NAME := so_long
 
@@ -37,14 +34,15 @@ $(LIBFT):
 	@make -C libft	
 	@echo 🔥 🔥 Making Executables ✅ ✅
 
-%.o: %.c
-	@$(CC) $(CFLAGS) -o $@ -c $< 
+$(OBJDIR)/%.o: %.c
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) $(MLX) $(LIBFT) $(HEADERS) -lglfw -o $(NAME) -lm
 
 clean:
-	@rm -fr $(OBJS)
+	@rm -fr $(OBJDIR)
 	make -C libft clean
 	make -C $(MLX_DIR)/build clean
 	@echo 🔥 🔥 Deleting all .o Files 🗑️ 🗑️
