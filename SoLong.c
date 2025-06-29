@@ -6,7 +6,7 @@
 /*   By: marco <marco@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 11:48:54 by mmembril          #+#    #+#             */
-/*   Updated: 2025/06/29 14:09:42 by marco            ###   ########.fr       */
+/*   Updated: 2025/06/29 17:00:13 by marco            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ static t_game  *init_game()
     map->y_player = 0;
     map->coin = 0;
     map->column = 0;
-    map->exit_column = 0;
-    map->exit_row = 0;
+    map->y_exit = 0;
+    map->x_exit = 0;
     map->mov = 0;
     map->row = 0;
     map->str_map = NULL;
@@ -54,9 +54,9 @@ int main(int ac, char **av)
     if (!game->mlx)
         return (ft_free(game), 1);
     if (load_images(game) || set_map_images(game))
-        return (ft_free(game), 1);
+        return (ft_free_all(game), 1);
     mlx_key_hook(game->mlx, &move_player, game);
     mlx_loop(game->mlx);
     mlx_terminate(game->mlx);
-    return (ft_free(game), 0);
+    return (ft_free_all(game), 0);
 }

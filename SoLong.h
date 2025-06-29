@@ -6,7 +6,7 @@
 /*   By: marco <marco@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 18:00:00 by mmembril          #+#    #+#             */
-/*   Updated: 2025/06/29 13:39:01 by marco            ###   ########.fr       */
+/*   Updated: 2025/06/29 16:59:59 by marco            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,11 @@ typedef struct s_map
     int     row;
     int     column;
     int     coin;
-    int     exit_row;
-    int     exit_column;
     int     mov;
     int     x_player;
     int     y_player;
+    int     x_exit;
+    int     y_exit;
     t_image *image;
 }   t_map;
 
@@ -67,6 +67,7 @@ int is_valid_map(char **map, int rows);
 int	check_name(char *name);
 int load_images(t_game *game);
 void    ft_free(t_game *game);
+void    ft_free_all(t_game *game);
 int set_map_images(t_game *game);
 void    ft_free_map(char **str);
 void    clear_img(t_game *game);

@@ -6,7 +6,7 @@
 /*   By: marco <marco@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 13:37:08 by mmembril          #+#    #+#             */
-/*   Updated: 2025/06/29 13:16:37 by marco            ###   ########.fr       */
+/*   Updated: 2025/06/29 17:01:33 by marco            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ static int ft_count_exit(t_game *game)
             if (game->map->str_map[i][j] == 'E')
             {
                 exit++;
-                game->map->exit_column = j;
-                game->map->exit_row = i;
+                game->map->y_exit = i;
+                game->map->x_exit = j;
             }
             j++;
         }

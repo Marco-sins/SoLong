@@ -6,7 +6,7 @@
 /*   By: marco <marco@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 11:27:40 by marco             #+#    #+#             */
-/*   Updated: 2025/06/29 13:25:17 by marco            ###   ########.fr       */
+/*   Updated: 2025/06/29 16:49:49 by marco            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@ static void reprint_images(t_game *game, int x, int y, t_image *image)
     {
         mlx_image_to_window(game->mlx, image->i_floor, game->map->x_player * 64, game->map->y_player * 64);
         mlx_image_to_window(game->mlx, image->i_exit, game->map->x_player * 64, game->map->y_player * 64);
+    }
+    else
+    {
+        mlx_image_to_window(game->mlx, image->i_floor, game->map->x_exit * 64, game->map->y_exit * 64);
+        mlx_image_to_window(game->mlx, image->i_exit, game->map->x_exit * 64, game->map->y_exit * 64);
     }
     if (game->map->str_map[game->map->y_player][game->map->x_player] != 'E' && game->map->str_map[game->map->y_player][game->map->x_player] != '1')
         mlx_image_to_window(game->mlx, image->i_floor, game->map->x_player * 64, game->map->y_player * 64);
