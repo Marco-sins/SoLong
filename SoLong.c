@@ -3,60 +3,64 @@
 /*                                                        :::      ::::::::   */
 /*   SoLong.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marco <marco@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mmembril <mmembril@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 11:48:54 by mmembril          #+#    #+#             */
-/*   Updated: 2025/06/29 17:00:13 by marco            ###   ########.fr       */
+/*   Updated: 2025/07/14 19:49:43 by mmembril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "SoLong.h"
 
-static t_game  *init_game()
+static t_game	*init_game(void)
 {
-    t_game *game;
-    t_map   *map;
-    
-    map = (t_map *)malloc(sizeof(t_map));
-    if (!map)
-        return (NULL);
-    map->x_player = 0;
-    map->y_player = 0;
-    map->coin = 0;
-    map->column = 0;
-    map->y_exit = 0;
-    map->x_exit = 0;
-    map->mov = 0;
-    map->row = 0;
-    map->str_map = NULL;
-    game = (t_game *)malloc(sizeof(t_game));
-    if (!game)
-    {
-        free(map);
-        return (NULL);
-    }
-    game->map = map;
-    return (game);
+	t_game	*game;
+	t_map	*map;
+
+	map = (t_map *)malloc(sizeof(t_map));
+	if (!map)
+		return (NULL);
+	map->x_player = 0;
+	map->y_player = 0;
+	map->coin = 0;
+	map->column = 0;
+	map->y_exit = 0;
+	map->x_exit = 0;
+	map->mov = 0;
+	map->row = 0;
+	map->str_map = NULL;
+	game = (t_game *)malloc(sizeof(t_game));
+	if (!game)
+	{
+		free(map);
+		return (NULL);
+	}
+	game->map = map;
+	game->moves = 0;
+	return (game);
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
-    t_game *game;
+	t_game	*game;
 
-    if (ac != 2)
-        return (1);
-    else if (!check_name(av[1]))
-        return (1);
-    game = init_game();
-    if (ft_map(av[1], game))
-        return (1);
-    game->mlx = mlx_init(64 * game->map->column, 64 * game->map->row, "SoLong", FALSE);
-    if (!game->mlx)
-        return (ft_free(game), 1);
-    if (load_images(game) || set_map_images(game))
-        return (ft_free_all(game), 1);
-    mlx_key_hook(game->mlx, &move_player, game);
-    mlx_loop(game->mlx);
-    mlx_terminate(game->mlx);
-    return (ft_free_all(game), 0);
+	if (ac != 2)
+		return (1);
+	else if (!check_name(av[1]))
+		return (1);
+	game = init_game();
+	if (ft_map(av[1], game))
+		return (1);
+	game->mlx = mlx_init(64 * game->map->column, 64 * game->map->row, "SoLong",
+			FALSE);
+	if (!game->mlx)
+		return (ft_free(game), 1);
+	if (load_images(game) || set_map_images(game))
+		return (ft_free_all(game), 1);
+	mlx_key_hook(game->mlx, &move_player, game);
+	mlx_loop(game->mlx);
+	ft_free_all(game);
+	mlx_terminate(game->mlx);
+	free(game);
+	return (0);
 }
