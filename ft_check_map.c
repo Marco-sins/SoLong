@@ -6,7 +6,7 @@
 /*   By: mmembril <mmembril@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 13:37:08 by mmembril          #+#    #+#             */
-/*   Updated: 2025/07/14 19:50:47 by mmembril         ###   ########.fr       */
+/*   Updated: 2025/07/17 17:00:46 by mmembril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ int	check_map(t_game *game)
 	if (!check_characters(game->map->str_map) || !ft_count_coin(game)
 		|| !ft_count_player(game) || !ft_count_exit(game))
 		return (FALSE);
-	if (!is_valid_map(game->map->str_map, game->map->row))
+	if (!is_valid_map(game->map->str_map, game->map->row, game->map->column))
 		return (FALSE);
 	return (TRUE);
 }

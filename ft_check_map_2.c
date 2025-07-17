@@ -6,7 +6,7 @@
 /*   By: mmembril <mmembril@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 13:51:49 by mmembril          #+#    #+#             */
-/*   Updated: 2025/07/14 21:16:27 by mmembril         ###   ########.fr       */
+/*   Updated: 2025/07/17 17:05:45 by mmembril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,32 @@ static void	get_pos_player(char **map, int *y, int *x)
 	}
 }
 
-int	is_valid_map(char **map, int rows)
+static int	ft_is_close_map(char **map, int rows, int columns)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < rows)
+	{
+		if (i == 0 || i == rows - 1)
+		{
+			j = 0;
+			while (map[i][j])
+			{
+				if (map[i][j] != '1')
+					return (FALSE);
+				j++;
+			}
+		}
+		else if (map[i][0] != '1' || map[i][columns - 1] != '1')
+			return (FALSE);
+		i++;
+	}
+	return (TRUE);
+}
+
+int	is_valid_map(char **map, int rows, int columns)
 {
 	int		i;
 	int		j;
@@ -73,6 +98,8 @@ int	is_valid_map(char **map, int rows)
 	char	**cpy_map;
 
 	i = 0;
+	if (!ft_is_close_map(map, rows, columns))
+		return (FALSE);
 	cpy_map = copy_map(map, rows);
 	get_pos_player(cpy_map, &y, &x);
 	flood_fill(cpy_map, y, x);

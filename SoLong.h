@@ -6,7 +6,7 @@
 /*   By: mmembril <mmembril@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 18:00:00 by mmembril          #+#    #+#             */
-/*   Updated: 2025/07/14 19:54:31 by mmembril         ###   ########.fr       */
+/*   Updated: 2025/07/17 17:00:34 by mmembril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int					error(const char *str, t_game *game);
 void				move_player(mlx_key_data_t keydata, void *param);
 int					ft_map(char *name_file, t_game *game);
 int					check_map(t_game *game);
-int					is_valid_map(char **map, int rows);
+int					is_valid_map(char **map, int rows, int columns);
 int					check_name(char *name);
 int					load_images(t_game *game);
 void				ft_free(t_game *game);

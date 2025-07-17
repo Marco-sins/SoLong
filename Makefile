@@ -16,8 +16,8 @@ SRCS := 	error.c \
 			ft_map.c \
 			load_images.c \
 			move_player.c \
-			SoLong_utils.c \
-			SoLong.c \
+			so_long_utils.c \
+			so_long.c \
 
 OBJDIR			= objs
 OBJS			= $(SRCS:%.c=$(OBJDIR)/%.o)
