@@ -6,23 +6,23 @@
 /*   By: mmembril <mmembril@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 13:51:49 by mmembril          #+#    #+#             */
-/*   Updated: 2025/07/17 17:05:45 by mmembril         ###   ########.fr       */
+/*   Updated: 2025/07/17 19:06:12 by mmembril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "SoLong.h"
+#include "so_long.h"
 
-static void	flood_fill(char **map, int x, int y)
+static void	flood_fill(char **map, int y, int x)
 {
 	if (map[y][x] == '1' || map[y][x] == 'F')
 		return ;
 	else if (map[y][x] == 'C' || map[y][x] == 'P' || map[y][x] == 'E'
 		|| map[y][x] == '0')
 		map[y][x] = 'F';
-	flood_fill(map, x + 1, y);
-	flood_fill(map, x - 1, y);
-	flood_fill(map, x, y + 1);
-	flood_fill(map, x, y - 1);
+	flood_fill(map, y + 1, x);
+	flood_fill(map, y - 1, x);
+	flood_fill(map, y, x + 1);
+	flood_fill(map, y, x - 1);
 }
 
 static char	**copy_map(char **map, int rows)

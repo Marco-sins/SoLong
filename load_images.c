@@ -6,11 +6,11 @@
 /*   By: mmembril <mmembril@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 19:34:42 by mmembril          #+#    #+#             */
-/*   Updated: 2025/07/14 19:58:04 by mmembril         ###   ########.fr       */
+/*   Updated: 2025/07/17 19:05:58 by mmembril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "SoLong.h"
+#include "so_long.h"
 
 static void	print_floor(t_game *game)
 {

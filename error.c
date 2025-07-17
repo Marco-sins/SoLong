@@ -6,11 +6,11 @@
 /*   By: mmembril <mmembril@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 11:57:32 by mmembril          #+#    #+#             */
-/*   Updated: 2025/07/14 19:50:28 by mmembril         ###   ########.fr       */
+/*   Updated: 2025/07/17 19:06:15 by mmembril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "SoLong.h"
+#include "so_long.h"
 
 void	ft_free_all(t_game *game)
 {

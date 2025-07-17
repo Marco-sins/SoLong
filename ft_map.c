@@ -6,11 +6,11 @@
 /*   By: mmembril <mmembril@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 12:27:38 by mmembril          #+#    #+#             */
-/*   Updated: 2025/07/14 19:52:39 by mmembril         ###   ########.fr       */
+/*   Updated: 2025/07/17 19:06:02 by mmembril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "SoLong.h"
+#include "so_long.h"
 
 static int	ft_count_rows(char *map_name)
 {

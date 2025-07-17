@@ -6,11 +6,30 @@
 /*   By: mmembril <mmembril@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 11:27:40 by marco             #+#    #+#             */
-/*   Updated: 2025/07/14 19:53:53 by mmembril         ###   ########.fr       */
+/*   Updated: 2025/07/17 19:09:42 by mmembril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "SoLong.h"
+#include "so_long.h"
+
+static void	reprint_images_2(t_game *game, int x, int y, t_image *image)
+{
+	if (game->map->str_map[game->map->y_player][game->map->x_player] != 'E'
+		&& game->map->str_map[game->map->y_player][game->map->x_player] != '1')
+		mlx_image_to_window(game->mlx, image->i_floor, game->map->x_player * 64,
+			game->map->y_player * 64);
+	game->map->x_player = x;
+	game->map->y_player = y;
+	if (game->map->str_map[game->map->y_player][game->map->x_player] == 'C')
+	{
+		mlx_image_to_window(game->mlx, image->i_floor, game->map->x_player * 64,
+			game->map->y_player * 64);
+		game->map->str_map[game->map->y_player][game->map->x_player] = '0';
+		game->map->coin--;
+	}
+	mlx_image_to_window(game->mlx, image->i_player, game->map->x_player * 64,
+		game->map->y_player * 64);
+}
 
 static void	reprint_images(t_game *game, int x, int y, t_image *image)
 {
@@ -28,21 +47,7 @@ static void	reprint_images(t_game *game, int x, int y, t_image *image)
 		mlx_image_to_window(game->mlx, image->i_exit, game->map->x_exit * 64,
 			game->map->y_exit * 64);
 	}
-	if (game->map->str_map[game->map->y_player][game->map->x_player] != 'E'
-		&& game->map->str_map[game->map->y_player][game->map->x_player] != '1')
-		mlx_image_to_window(game->mlx, image->i_floor, game->map->x_player * 64,
-			game->map->y_player * 64);
-	game->map->x_player = x;
-	game->map->y_player = y;
-	if (game->map->str_map[game->map->y_player][game->map->x_player] == 'C')
-	{
-		mlx_image_to_window(game->mlx, image->i_floor, game->map->x_player * 64,
-			game->map->y_player * 64);
-		game->map->str_map[game->map->y_player][game->map->x_player] = '0';
-		game->map->coin--;
-	}
-	mlx_image_to_window(game->mlx, image->i_player, game->map->x_player * 64,
-		game->map->y_player * 64);
+	reprint_images_2(game, x, y, image);
 }
 
 static void	key_action(t_game *game, int x, int y)

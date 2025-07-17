@@ -6,11 +6,11 @@
 /*   By: mmembril <mmembril@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 13:37:08 by mmembril          #+#    #+#             */
-/*   Updated: 2025/07/17 17:00:46 by mmembril         ###   ########.fr       */
+/*   Updated: 2025/07/17 19:06:07 by mmembril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "SoLong.h"
+#include "so_long.h"
 
 static int	ft_count_exit(t_game *game)
 {
