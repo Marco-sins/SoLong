@@ -6,7 +6,7 @@
 /*   By: mmembril <mmembril@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 19:34:42 by mmembril          #+#    #+#             */
-/*   Updated: 2025/07/17 19:05:58 by mmembril         ###   ########.fr       */
+/*   Updated: 2025/07/17 21:26:59 by mmembril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,16 +79,26 @@ static void	ft_texture_to_image(t_game *game)
 
 void	clear_img(t_game *game)
 {
-	mlx_delete_texture(game->map->image->t_coin);
-	mlx_delete_texture(game->map->image->t_exit);
-	mlx_delete_texture(game->map->image->t_floor);
-	mlx_delete_texture(game->map->image->t_player);
-	mlx_delete_texture(game->map->image->t_wall);
-	mlx_delete_image(game->mlx, game->map->image->i_coin);
-	mlx_delete_image(game->mlx, game->map->image->i_exit);
-	mlx_delete_image(game->mlx, game->map->image->i_floor);
-	mlx_delete_image(game->mlx, game->map->image->i_player);
-	mlx_delete_image(game->mlx, game->map->image->i_wall);
+	if (game->map->image->t_coin != NULL)
+		mlx_delete_texture(game->map->image->t_coin);
+	if (game->map->image->t_exit != NULL)
+		mlx_delete_texture(game->map->image->t_exit);
+	if (game->map->image->t_floor != NULL)
+		mlx_delete_texture(game->map->image->t_floor);
+	if (game->map->image->t_player != NULL)
+		mlx_delete_texture(game->map->image->t_player);
+	if (game->map->image->t_wall != NULL)
+		mlx_delete_texture(game->map->image->t_wall);
+	if (game->map->image->i_coin != NULL)
+		mlx_delete_image(game->mlx, game->map->image->i_coin);
+	if (game->map->image->i_exit != NULL)
+		mlx_delete_image(game->mlx, game->map->image->i_exit);
+	if (game->map->image->i_floor != NULL)
+		mlx_delete_image(game->mlx, game->map->image->i_floor);
+	if (game->map->image->i_player != NULL)
+		mlx_delete_image(game->mlx, game->map->image->i_player);
+	if (game->map->image->i_wall != NULL)
+		mlx_delete_image(game->mlx, game->map->image->i_wall);
 }
 
 int	load_images(t_game *game)

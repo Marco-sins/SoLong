@@ -6,7 +6,7 @@
 /*   By: mmembril <mmembril@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 12:27:38 by mmembril          #+#    #+#             */
-/*   Updated: 2025/07/17 19:06:02 by mmembril         ###   ########.fr       */
+/*   Updated: 2025/07/17 21:23:17 by mmembril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,14 +84,14 @@ int	ft_map(char *name_file, t_game *game)
 {
 	game->map->row = ft_count_rows(name_file);
 	if (game->map->row == -1)
-		return (1);
+		return (ft_printf("ERROR\n"), 1);
 	game->map->str_map = ft_mount_map(name_file, game->map->row);
 	if (!game->map->str_map)
-		return (error("ERROR\n", game));
+		return (error("ERROR", game));
 	game->map->column = ft_check_column(game->map->str_map, game->map->row);
 	if (game->map->column == 0)
-		return (error("ERROR\n", game));
+		return (error("ERROR", game));
 	if (!check_map(game))
-		return (error("ERROR\n", game));
+		return (error("ERROR", game));
 	return (0);
 }
