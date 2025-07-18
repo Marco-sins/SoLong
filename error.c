@@ -15,9 +15,10 @@
 void	ft_free_all(t_game *game)
 {
 	clear_img(game);
-	ft_free_map(game->map->str_map);
-	free(game->map->image);
-	free(game->map);
+	if (game->map->image)
+		free(game->map->image);
+	mlx_terminate((game->mlx));
+	ft_free(game);
 }
 
 void	ft_free(t_game *game)

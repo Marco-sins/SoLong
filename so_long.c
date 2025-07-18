@@ -50,7 +50,7 @@ int	main(int ac, char **av)
 		return (ft_printf("ERROR\n"), 1);
 	game = init_game();
 	if (ft_map(av[1], game))
-		return (free(game->map), free(game), 1);
+		return (1);
 	game->mlx = mlx_init(64 * game->map->column, 64 * game->map->row, "SoLong",
 			FALSE);
 	if (!game->mlx)

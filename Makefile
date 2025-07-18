@@ -6,6 +6,7 @@ MLX_DIR = ./MLX42
 MLX := $(MLX_DIR)/build/libmlx42.a
 
 LIBFT := libft/libft.a
+LIBFT_OBJS := libft/src/*.o
 
 INC := -I libft/includes
 
@@ -38,7 +39,7 @@ $(OBJDIR)/%.o: %.c
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-$(NAME): $(OBJS)
+$(NAME): $(OBJS) $(LIBFT_OBJS)
 	$(CC) $(CFLAGS) $(OBJS) $(MLX) $(LIBFT) $(HEADERS) -lglfw -o $(NAME) -lm
 
 clean:
