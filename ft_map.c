@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_map.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmembril <mmembril@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: marco <marco@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 12:27:38 by mmembril          #+#    #+#             */
-/*   Updated: 2025/07/17 21:23:17 by mmembril         ###   ########.fr       */
+/*   Updated: 2025/07/21 17:29:25 by marco            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ static char	**ft_mount_map(char *name_file, int rows)
 		rows--;
 		i++;
 	}
+	get_next_line(-1);
 	close(fd);
 	map[i] = NULL;
 	return (map);

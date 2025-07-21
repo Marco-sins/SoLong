@@ -3,14 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmembril <mmembril@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: marco <marco@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 11:48:54 by mmembril          #+#    #+#             */
-/*   Updated: 2025/07/17 21:23:42 by mmembril         ###   ########.fr       */
+/*   Updated: 2025/07/21 17:50:51 by marco            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+static int	init_images(t_game *game)
+{
+	game->map->image = malloc(sizeof(t_image));
+	if (!game->map->image)
+		return (1);
+	game->map->image->i_coin =  NULL;	
+	game->map->image->i_exit  =  NULL;
+	game->map->image->i_floor  =  NULL;
+	game->map->image->i_player  =  NULL;
+	game->map->image->i_wall  =  NULL;
+	game->map->image->t_coin  =  NULL;
+	game->map->image->t_exit  =  NULL;
+	game->map->image->t_floor  =  NULL;
+	game->map->image->t_coin  =  NULL;
+	game->map->image->t_player  =  NULL;
+	return (0);
+}
 
 static t_game	*init_game(void)
 {
@@ -31,12 +49,11 @@ static t_game	*init_game(void)
 	map->str_map = NULL;
 	game = (t_game *)malloc(sizeof(t_game));
 	if (!game)
-	{
-		free(map);
-		return (NULL);
-	}
+		return (free(map), NULL);
 	game->map = map;
 	game->moves = 0;
+	if (init_images(game))
+		return (NULL);
 	return (game);
 }
 

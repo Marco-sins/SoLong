@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_images.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmembril <mmembril@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: marco <marco@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 19:34:42 by mmembril          #+#    #+#             */
-/*   Updated: 2025/07/17 21:26:59 by mmembril         ###   ########.fr       */
+/*   Updated: 2025/07/21 17:49:23 by marco            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,16 +103,12 @@ void	clear_img(t_game *game)
 
 int	load_images(t_game *game)
 {
-	game->map->image = (t_image *)malloc(sizeof(t_image));
-	if (!game->map->image)
-		return (1);
-	game->map->image = game->map->image;
 	game->map->image->t_coin = mlx_load_png("./sources/coin.png");
 	game->map->image->t_exit = mlx_load_png("./sources/exit.png");
 	game->map->image->t_floor = mlx_load_png("./sources/floor.png");
 	game->map->image->t_player = mlx_load_png("./sources/player.png");
 	game->map->image->t_wall = mlx_load_png("./sources/wall.png");
-	if (!game->map->image->t_coin || !game->map->image->t_coin
+	if (!game->map->image->t_coin || !game->map->image->t_exit
 		|| !game->map->image->t_floor || !game->map->image->t_player
 		|| !game->map->image->t_wall)
 		return (ft_printf("ERROR\n"), 1);

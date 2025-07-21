@@ -6,92 +6,105 @@
 /*   By: marco <marco@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/06 21:25:38 by marco             #+#    #+#             */
-/*   Updated: 2025/06/26 11:11:54 by marco            ###   ########.fr       */
+/*   Updated: 2025/07/21 17:10:20 by marco            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/get_next_line.h"
 
-char	*ft_strjoin_gnl(char *s1, char const *s2)
+char	*ft_strchr_gnl(char *s, int c)
 {
-	char	*s3;
-	int		i;
-	int		j;
+	char	a;
 
-	s3 = malloc((ft_strlen_gnl(s1) + ft_strlen_gnl(s2) + 1) * sizeof(char));
-	i = 0;
-	j = 0;
-	if (!s3)
-		return (NULL);
-	while (s1[j])
+	a = (char)c;
+	while (*s)
 	{
-		s3[j] = s1[j];
-		j++;
+		if (*s == a)
+			return (s);
+		s++;
 	}
-	while (s2[i])
-	{
-		s3[j] = s2[i];
-		i++;
-		j++;
-	}
-	s3[j] = '\0';
-	free (s1);
-	return (s3);
-}
-
-char	*ft_strchr_gnl(const char *s, int c)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-	{
-		if (s[i] == (char)c)
-			return ((char *)&s[i]);
-		i++;
-	}
-	if ((char)c == s[i])
-		return ((char *)&s[i]);
 	return (NULL);
 }
 
-size_t	ft_strlen_gnl(const char *str)
+size_t	ft_strlen_gnl(char *str)
 {
 	size_t	i;
 
 	i = 0;
-	while (str[i] != '\0')
+	while (*str != '\0')
 	{
+		str++;
 		i++;
 	}
 	return (i);
 }
 
-void	*ft_calloc_gnl(size_t nmeb, size_t size)
+void	*ft_calloc_gnl(size_t nmemb, size_t size)
 {
-	char	*ptr;
+	char	*str;
+	size_t	i;
 
-	ptr = malloc(nmeb * size);
-	if (nmeb * size == 2)
-		printf("CALLOC: %p (%zu bytes)\n", ptr, nmeb * size);
-	if (!ptr)
+	if (!nmemb || !size)
 		return (NULL);
-	ft_bzero_gnl(ptr, nmeb * size);
-	return (ptr);
+	str = malloc((nmemb * size));
+	if (str == NULL)
+		return (NULL);
+	i = 0;
+	while (i < nmemb * size)
+	{
+		str[i] = '\0';
+		i++;
+	}
+	return (str);
 }
 
-void	ft_bzero_gnl(void *s, size_t n)
+char	*ft_strjoin_gnl(char *s1, char *s2)
 {
-	unsigned char	*a;
-	int				i;
+	char	*str;
+	size_t	i;
+	size_t	s1_len;
 
+	if (!s1 && !s2)
+		return (NULL);
+	if (!s1)
+		return (s2);
+	if (!s2)
+		return (s1);
+	s1_len = ft_strlen_gnl(s1);
+	str = malloc(((s1_len + ft_strlen_gnl(s2)) + 1) * sizeof(char));
+	if (!str)
+		return (NULL);
 	i = 0;
-	a = s;
-	while (n > 0)
+	while (i < s1_len)
 	{
-		a[i] = '\0';
+		str[i] = s1[i];
 		i++;
-		n--;
 	}
-	s = a;
+	while (*s2)
+		str[i++] = *s2++;
+	str[i] = '\0';
+	return (str);
+}
+
+char	*ft_strdup_gnl(const char *s1)
+{
+	char	*copy;
+	size_t	len;
+	size_t	i;
+
+	len = ft_strlen_gnl((char *)s1);
+	copy = malloc(len + 1);
+	if (copy == NULL)
+	{
+		free(copy);
+		return (NULL);
+	}
+	i = 0;
+	while (i < len)
+	{
+		copy[i] = s1[i];
+		i++;
+	}
+	copy[len] = '\0';
+	return (copy);
 }

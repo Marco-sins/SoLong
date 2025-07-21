@@ -6,117 +6,130 @@
 /*   By: marco <marco@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/06 21:25:08 by marco             #+#    #+#             */
-/*   Updated: 2025/07/21 16:00:46 by marco            ###   ########.fr       */
+/*   Updated: 2025/07/21 17:11:03 by marco            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/get_next_line.h"
 
-static char	*ft_buffer(char *buff)
+char	*ft_next(char *buffer)
 {
-	char	*str;
 	int		i;
 	int		j;
+	char	*line;
 
 	i = 0;
-	while (buff[i] && buff[i] != '\n')
+	while (buffer[i] && buffer[i] != '\n')
 		i++;
-	if (!buff[i])
+	if (buffer[i] == '\0')
 	{
-		free(buff);
+		free(buffer);
 		return (NULL);
 	}
-	str = ft_calloc_gnl((ft_strlen_gnl(buff) - i + 1), sizeof(char));
-	if (!str)
-	{
-		free (buff);
+	line = ft_calloc_gnl((ft_strlen_gnl(buffer) - i + 1), sizeof(char));
+	if (!line)
 		return (NULL);
-	}
 	i++;
 	j = 0;
-	while (buff[i])
-		str[j++] = buff[i++];
-	free(buff);
-	return (str);
+	while (buffer[i])
+		line[j++] = buffer[i++];
+	line[j] = '\0';
+	free(buffer);
+	return (line);
 }
 
-static char	*ft_mountline(char *buff)
+char	*ft_line(char *buffer)
 {
+	char	*line;
 	int		i;
-	char	*aux;
 
 	i = 0;
-	if (!buff[i])
+	if (!buffer || !buffer[i])
 		return (NULL);
-	while (buff[i] && buff[i] != '\n')
+	while (buffer[i] && buffer[i] != '\n')
 		i++;
-	aux = ft_calloc_gnl(sizeof(char), (i + 2));
-	if (!aux)
+	if (buffer[i] == '\n')
+		line = ft_calloc_gnl(i + 2, sizeof(char));
+	else
+		line = ft_calloc_gnl(i + 1, sizeof(char));
+	if (!line)
 		return (NULL);
 	i = 0;
-	while (buff[i] && buff[i] != '\n')
+	while (buffer[i] && buffer[i] != '\n')
 	{
-		aux[i] = buff[i];
+		line[i] = buffer[i];
 		i++;
 	}
-	if (buff[i] == '\n')
-	{
-		aux[i] = buff[i];
-		i++;
-	}
-	aux[i] = '\0';
-	return (aux);
+	if (buffer[i] && buffer[i] == '\n')
+		line[i++] = '\n';
+	line[i] = '\0';
+	return (line);
 }
 
-static char	*ft_read(int fd, char *buff)
+char	*ft_free_join(char *gnl_buf, char *buf)
 {
-	int		read_bytes;
-	char	*aux;
+	char	*join;
 
-	aux = ft_calloc_gnl((BUFFER_SIZE + 2), sizeof(char));
-	if (!aux)
+	if (!gnl_buf)
+		return (ft_strdup_gnl(buf));
+	join = ft_strjoin_gnl(gnl_buf, buf);
+	free(gnl_buf);
+	return (join);
+}
+
+char	*read_file(int fd, char *gnl_buf)
+{
+	char	*buffer;
+	int		reading_bytes;
+
+	buffer = ft_calloc_gnl(BUFFER_SIZE + 1, sizeof(char));
+	if (!buffer)
 		return (NULL);
-	read_bytes = 1;
-	while (!(ft_strchr_gnl(buff, '\n')) && read_bytes != 0)
+	reading_bytes = 1;
+	while (reading_bytes > 0)
 	{
-		read_bytes = read(fd, aux, BUFFER_SIZE);
-		if (read_bytes == -1)
+		reading_bytes = read(fd, buffer, BUFFER_SIZE);
+		if (reading_bytes < 0)
 		{
-			if (buff != NULL)
-				free(buff);
-			free(aux);
+			free(buffer);
+			free(gnl_buf);
 			return (NULL);
 		}
-		aux[read_bytes] = '\0';
-		buff = ft_strjoin_gnl(buff, aux);
+		buffer[reading_bytes] = '\0';
+		gnl_buf = ft_free_join(gnl_buf, buffer);
+		if (ft_strchr_gnl(buffer, '\n'))
+			break ;
 	}
-	free(aux);
-	return (buff);
+	free(buffer);
+	return (gnl_buf);
 }
 
 char	*get_next_line(int fd)
 {
-	static char	*buff;
-	char		*line;
+	static char	*buffer;
+	char		*row;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (0);
-	if (!buff)
-		buff = ft_calloc_gnl(BUFFER_SIZE + 1, sizeof(char));
-	if (!buff)
-		return (NULL);
-	buff = ft_read(fd, buff);
-	if (!buff)
 	{
-		free (buff);
+		if (fd <= 0 && buffer)
+		{
+			free(buffer);
+			buffer = NULL;
+		}
 		return (NULL);
 	}
-	line = ft_mountline(buff);
-	buff = ft_buffer(buff);
-	if (!buff)
-		buff = NULL;
-	return (line);
+	if (!buffer)
+		buffer = ft_calloc_gnl(1, sizeof(char));
+	if (!buffer)
+		return (NULL);
+	buffer = read_file(fd, buffer);
+	if (!buffer)
+		return (NULL);
+	row = ft_line(buffer);
+	buffer = ft_next(buffer);
+	return (row);
 }
+
 
 //int main()
 //{

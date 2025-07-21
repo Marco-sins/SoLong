@@ -1,4 +1,4 @@
-CC = gcc
+CC = cc
 
 CFLAGS  := -g -Wall -Wextra -Werror
 
@@ -6,7 +6,6 @@ MLX_DIR = ./MLX42
 MLX := $(MLX_DIR)/build/libmlx42.a
 
 LIBFT := libft/libft.a
-LIBFT_OBJS := libft/src/*.o
 
 INC := -I libft/includes
 
