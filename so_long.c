@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marco <marco@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mmembril <mmembril@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 11:48:54 by mmembril          #+#    #+#             */
-/*   Updated: 2025/07/21 17:50:51 by marco            ###   ########.fr       */
+/*   Updated: 2025/07/21 18:21:16 by mmembril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,16 @@ static int	init_images(t_game *game)
 	game->map->image = malloc(sizeof(t_image));
 	if (!game->map->image)
 		return (1);
-	game->map->image->i_coin =  NULL;	
-	game->map->image->i_exit  =  NULL;
-	game->map->image->i_floor  =  NULL;
-	game->map->image->i_player  =  NULL;
-	game->map->image->i_wall  =  NULL;
-	game->map->image->t_coin  =  NULL;
-	game->map->image->t_exit  =  NULL;
-	game->map->image->t_floor  =  NULL;
-	game->map->image->t_coin  =  NULL;
-	game->map->image->t_player  =  NULL;
+	game->map->image->i_coin = NULL;
+	game->map->image->i_exit = NULL;
+	game->map->image->i_floor = NULL;
+	game->map->image->i_player = NULL;
+	game->map->image->i_wall = NULL;
+	game->map->image->t_coin = NULL;
+	game->map->image->t_exit = NULL;
+	game->map->image->t_floor = NULL;
+	game->map->image->t_coin = NULL;
+	game->map->image->t_player = NULL;
 	return (0);
 }
 

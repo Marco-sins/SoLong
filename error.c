@@ -6,7 +6,7 @@
 /*   By: mmembril <mmembril@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 11:57:32 by mmembril          #+#    #+#             */
-/*   Updated: 2025/07/17 19:06:15 by mmembril         ###   ########.fr       */
+/*   Updated: 2025/07/21 18:26:22 by mmembril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 void	ft_free_all(t_game *game)
 {
 	clear_img(game);
-	if (game->map->image)
-		free(game->map->image);
 	mlx_terminate((game->mlx));
 	ft_free(game);
 }
@@ -25,6 +23,7 @@ void	ft_free(t_game *game)
 {
 	if (game->map->str_map)
 		ft_free_map(game->map->str_map);
+	free(game->map->image);
 	free(game->map);
 	free(game);
 }
