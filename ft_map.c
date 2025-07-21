@@ -84,7 +84,7 @@ int	ft_map(char *name_file, t_game *game)
 {
 	game->map->row = ft_count_rows(name_file);
 	if (game->map->row == -1)
-		return (ft_printf("ERROR\n"), 1);
+		return (error("ERROR", game), 1);
 	game->map->str_map = ft_mount_map(name_file, game->map->row);
 	if (!game->map->str_map)
 		return (error("ERROR", game));

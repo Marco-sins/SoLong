@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmembril <mmembril@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: marco <marco@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/06 21:25:08 by marco             #+#    #+#             */
-/*   Updated: 2024/12/26 12:05:59 by mmembril         ###   ########.fr       */
+/*   Updated: 2025/07/21 16:00:46 by marco            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,8 @@ char	*get_next_line(int fd)
 	}
 	line = ft_mountline(buff);
 	buff = ft_buffer(buff);
+	if (!buff)
+		buff = NULL;
 	return (line);
 }
 

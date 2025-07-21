@@ -72,6 +72,8 @@ void	*ft_calloc_gnl(size_t nmeb, size_t size)
 	char	*ptr;
 
 	ptr = malloc(nmeb * size);
+	if (nmeb * size == 2)
+		printf("CALLOC: %p (%zu bytes)\n", ptr, nmeb * size);
 	if (!ptr)
 		return (NULL);
 	ft_bzero_gnl(ptr, nmeb * size);

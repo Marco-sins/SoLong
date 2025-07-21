@@ -23,7 +23,8 @@ void	ft_free_all(t_game *game)
 
 void	ft_free(t_game *game)
 {
-	ft_free_map(game->map->str_map);
+	if (game->map->str_map)
+		ft_free_map(game->map->str_map);
 	free(game->map);
 	free(game);
 }
